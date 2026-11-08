@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "TMT",
+  "short_name": "TMT",
+  "description": "내 자산 한눈에 · 주식 배당·하락 알림 · 금·외화·부동산·상가",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0C1017",
+  "theme_color": "#0C1017",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
