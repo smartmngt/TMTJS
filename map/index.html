@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0C1017" />
+<title>TMT 지도</title>
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="../icon-32.png" />
+<link rel="apple-touch-icon" href="../icon-180.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="TMT 지도" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root { --bg: #0C1017; --card: #1e293b; --line: #334155; --text: #f1f5f9; --muted: #94a3b8; --blue: #60a5fa; --orange: #fb923c; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: Pretendard, system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
+  body { display: flex; flex-direction: column; padding-top: env(safe-area-inset-top); }
+  header { display: flex; gap: 6px; padding: 8px 10px; align-items: center; flex-wrap: wrap; }
+  button, select { font: inherit; font-size: 14px; color: var(--text); background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; min-height: 40px; }
+  button[aria-pressed="true"] { background: #1d4ed8; border-color: #1d4ed8; }
+  .grow { flex: 1; }
+  main { flex: 1; position: relative; min-height: 0; }
+  #map, #compare { position: absolute; inset: 0; }
+  #compare { overflow: auto; padding: 12px 10px calc(16px + env(safe-area-inset-bottom)); background: var(--bg); }
+  #nokey { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--muted); line-height: 1.6; }
+  #sheet { position: absolute; left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom)); background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; z-index: 10; box-shadow: 0 6px 24px #0008; }
+  #sheet h2 { font-size: 16px; margin: 0 0 2px; display: flex; gap: 8px; align-items: center; }
+  #sheet h2 span { flex: 1; }
+  #sheet .sub { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+  .row { display: flex; justify-content: space-between; font-size: 14px; padding: 3px 0; }
+  .row b { font-variant-numeric: tabular-nums; }
+  .row small { color: var(--muted); margin-left: 6px; }
+  .types { display: flex; height: 10px; border-radius: 5px; overflow: hidden; margin: 8px 0 4px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12px; color: var(--muted); }
+  .legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; }
+  h3 { font-size: 15px; margin: 14px 0 6px; }
+  .scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 7px 3px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+  th:nth-child(2), td:nth-child(2) { text-align: left; white-space: normal; min-width: 72px; }
+  th { color: var(--muted); font-weight: 500; }
+  th button { background: none; border: 0; padding: 4px 0; min-height: 0; color: inherit; font-size: 12px; text-decoration: underline dotted; }
+  th[aria-sort] button { color: var(--blue); font-weight: 700; text-decoration: none; }
+  td small { color: var(--muted); }
+  tr.avg td { color: var(--muted); }
+  td button { min-height: 28px; padding: 2px 8px; font-size: 12px; }
+  .note { color: var(--muted); font-size: 12px; line-height: 1.6; margin-top: 12px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <button id="tabMap" aria-pressed="true">지도</button>
+  <button id="tabCompare" aria-pressed="false">비교 <span id="count"></span></button>
+  <span class="grow"></span>
+  <button id="modeTrdar" aria-pressed="true">골목</button>
+  <button id="modeCircle" aria-pressed="false">원</button>
+  <select id="radius" aria-label="원 반경">
+    <option value="300">300m</option>
+    <option value="500" selected>500m</option>
+    <option value="1000">1km</option>
+  </select>
+</header>
+<main>
+  <div id="map"></div>
+  <div id="nokey" hidden>카카오 JavaScript 키를 넣으면 지도가 떠요.<br />(map/app.js 맨 위 KAKAO_KEY)</div>
+  <section id="sheet" hidden aria-live="polite"></section>
+  <section id="compare" hidden></section>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>
