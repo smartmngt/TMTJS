@@ -26,6 +26,7 @@ const rLabel = r => r >= 1000 ? `${r / 1000}km` : `${r}m`;
 function stats(e) {
   if (e.kind === 't') {
     const t = data.trdar.find(t => t.c === e.code);
+    if (!t) return { name: '사라진 상권 (새 분기 자료에 없음)', sub: '', foot: null, resid: null, hh: null, types: null };
     const d = data.dong.find(d => d.c === t.d);
     return { name: t.n, sub: `${t.k} · ${d ? d.n : ''}`, foot: t.foot, resid: t.resid, hh: t.hh, types: d ? d.types : null };
   }
