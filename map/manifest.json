@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "TMT 지도",
+  "short_name": "TMT 지도",
+  "description": "서울 상권·반경별 유동인구·주거인구·가구 형태 비교",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0C1017",
+  "theme_color": "#0C1017",
+  "icons": [
+    { "src": "../icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "../icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

@@ -4,7 +4,7 @@ const STEP = 20; // 원 안에 20m 간격으로 점을 찍어 넓이 비례로 �
 const KEYS = ['foot', 'resid', 'hh'];
 const TOUR = '관광특구'; // 다른 상권과 겹쳐서 원 계산에서 뺀다
 
-function bbox(item) {
+export function bbox(item) {
   if (!item._b) {
     const b = [Infinity, Infinity, -Infinity, -Infinity];
     for (const r of item.rings) for (let i = 0; i < r.length; i += 2) {
